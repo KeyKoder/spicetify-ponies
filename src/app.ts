@@ -56,6 +56,11 @@ async function main() {
 
 		Spicetify.showNotification("Everypony is here!");
 
+		// Modify the pony list to get back the dupes with the same name (eg. the three variants of Princess Luna)
+		BrowserPoniesBaseConfig.ponies.forEach(e => {
+			e.ini = e.ini.replace(new RegExp('Name,"?[\\w\\s#.\'()\\-]+"?\\n'),`Name,"${decodeURI(e.baseurl).split("/")[1]}"\\n`);
+		});
+
 		(function (cfg) {
 			BrowserPonies.setBaseUrl(cfg.baseurl);
 			BrowserPonies.loadConfig(BrowserPoniesBaseConfig);

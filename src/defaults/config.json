@@ -1,4 +1,4 @@
 {
-    "basecfgLocation": "https://panzi.github.io/Browser-Ponies/basecfg.js",
-    "baseUrl": "https://panzi.github.io/Browser-Ponies/"
+    "basecfgLocation": "https://browser.pony.house/js/ponybase.js",
+    "baseUrl": "https://browser.pony.house/"
 }

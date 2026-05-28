@@ -225,7 +225,7 @@ declare global {
         URL: any; 
     }
 
-    var BrowserPoniesBaseConfig: BrowserPoniesConfig;
+    var BrowserPoniesBaseConfig: { interactions: string, ponies: { ini: string, baseurl: string }[] };
 }
 
 export {};
