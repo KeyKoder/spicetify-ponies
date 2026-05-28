@@ -30,8 +30,14 @@ function spawnPoniesForTrack(track) {
 		}
 	}else {
 		for(let artist of track.artists) {
-			let name = artist.name.replace(/\s*\(.+?\)/, "");
-			BrowserPonies.spawn(artistMap[name] || name);
+			let name = artist.name.replace(/\s*\(.+?\)/, "").toLowerCase();
+			if(artistMap[name] && typeof(artistMap[name]) == typeof([])) {
+				for(let pony of artistMap[name]) {
+					BrowserPonies.spawn(pony);
+				}
+			}else {
+				BrowserPonies.spawn(artistMap[name] || name);
+			}
 		}
 	}
 	newPoniesSpawned = true;

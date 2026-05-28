@@ -1,4 +1,6 @@
 {
-  "Apple Jack": "applejack",
-  "Applebloom": "apple bloom"
+  "apple jack": "applejack",
+  "applebloom": "apple bloom",
+  "the dazzlings": ["adagio dazzle", "sonata dusk", "aria blaze"],
+  "the rainbooms": ["twilight sparkle", "rarity", "rainbow dash", "fluttershy", "applejack", "pinkie pie"]
 }
