@@ -1,3 +1,5 @@
+import defaultConfig from "./defaults/config.json"
+
 const loadScript = (src: string): Promise<void> => {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
@@ -16,7 +18,7 @@ async function main() {
 	Spicetify.showNotification("Loading ponies...")
 	
 	try {
-		await loadScript("https://browser.pony.house/js/ponybase.js");
+		await loadScript(defaultConfig.basecfgLocation);
 		await loadScript("https://browser.pony.house/js/browserponies.js");
 
 		Spicetify.showNotification("Everypony is here!");
@@ -26,7 +28,7 @@ async function main() {
 			BrowserPonies.loadConfig(BrowserPoniesBaseConfig);
 			BrowserPonies.loadConfig(cfg);
 		})({
-			baseurl: "https://browser.pony.house/",
+			baseurl: defaultConfig.baseUrl,
 			allowDoubleClickControl: false,
 			fadeDuration: 500,
 			volume: 1,
