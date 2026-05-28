@@ -1,5 +1,6 @@
 import defaultConfig from "./defaults/config.json"
 import artistMap from "./defaults/artist_map.json"
+import trackMap from "./defaults/track_map.json"
 
 let newPoniesSpawned = false;
 
@@ -20,11 +21,18 @@ async function waitWhile(conditionFn: () => boolean, interval = 100): Promise<vo
 }
 
 function spawnPoniesForTrack(track) {
-	if(!track) return;
+	// if(!track) return;
 	BrowserPonies.unspawnAll();
-	for(let artist of track.artists) {
-		let name = artist.name.replace(/\s*\(.+?\)/, "");
-		BrowserPonies.spawn(artistMap[name] || name);
+	if(trackMap[track.uri]) {
+		console.log(trackMap[track.uri])
+		for(let pony of trackMap[track.uri]) {
+			BrowserPonies.spawn(pony);
+		}
+	}else {
+		for(let artist of track.artists) {
+			let name = artist.name.replace(/\s*\(.+?\)/, "");
+			BrowserPonies.spawn(artistMap[name] || name);
+		}
 	}
 	newPoniesSpawned = true;
 }
@@ -38,7 +46,7 @@ async function main() {
 		await loadScript(defaultConfig.basecfgLocation);
 		await loadScript("https://browser.pony.house/js/browserponies.js");
 
-		waitWhile(() => document.getElementsByClassName("main-loadingPage-container").length > 0, 1000);
+		await waitWhile(() => document.getElementsByClassName("main-loadingPage-container").length > 0, 1000);
 
 		Spicetify.showNotification("Everypony is here!");
 
