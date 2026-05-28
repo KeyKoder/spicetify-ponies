@@ -1,0 +1,19 @@
+{
+  "name": "spicetify-ponies",
+  "version": "1.0.0",
+  "description": "Add ponies to your Spotify using Spicetify!",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "esbuild": "^0.28.0",
+    "typescript": "^6.0.3"
+  }
+}
