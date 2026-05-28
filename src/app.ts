@@ -1,5 +1,7 @@
 import defaultConfig from "./defaults/config.json"
 
+let newPoniesSpawned = false;
+
 const loadScript = (src: string): Promise<void> => {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
@@ -10,16 +12,31 @@ const loadScript = (src: string): Promise<void> => {
     });
 };
 
-async function main() {
-	while (!Spicetify?.Platform?.PlayerAPI || !Spicetify?.Keyboard || !document.body) {
-		await new Promise((resolve) => setTimeout(resolve, 100));
+async function waitWhile(conditionFn: () => boolean, interval = 100): Promise<void> {
+    while (conditionFn()) {
+        await new Promise((resolve) => setTimeout(resolve, interval));
+    }
+}
+
+function spawnPoniesForTrack(track) {
+	if(!track) return;
+	BrowserPonies.unspawnAll();
+	for(let artist of track.artists) {
+		BrowserPonies.spawn(artist.name);
 	}
+	newPoniesSpawned = true;
+}
+
+async function main() {
+	await waitWhile(() => !Spicetify?.showNotification || !Spicetify?.Player || !document.body);
 
 	Spicetify.showNotification("Loading ponies...")
 	
 	try {
 		await loadScript(defaultConfig.basecfgLocation);
 		await loadScript("https://browser.pony.house/js/browserponies.js");
+
+		waitWhile(() => document.getElementsByClassName("main-loadingPage-container").length > 0, 1000);
 
 		Spicetify.showNotification("Everypony is here!");
 
@@ -40,18 +57,23 @@ async function main() {
 			showLoadProgress: false,
 			speakProbability: 0.1,
 			spawn: {
-				"derpy hooves": 1,
-				"princess luna": 1
 			},
 			autostart: true,
 		});
 
-		Spicetify.Player.addEventListener("songchange", (event) => {
-            BrowserPonies.unspawnAll();
-			for(let artist of event.data.item.artists) {
-				BrowserPonies.spawn(artist.name);
+		setInterval(() => {
+			if(!newPoniesSpawned) return;
+			for(let inst of BrowserPonies.api.getInstances()) {
+				inst.img.style.pointerEvents = "none";
 			}
+			newPoniesSpawned = false;
+		}, 5000);
+
+		Spicetify.Player.addEventListener("songchange", (event) => {
+            spawnPoniesForTrack(event.data.item);
         });
+
+		spawnPoniesForTrack(Spicetify.Player.data.item || undefined);
 	}catch (error) {
         console.error("[Spicetify Ponies] Failed to initialize:", error);
         Spicetify.showNotification("Failed to load ponies. Check console.", true);
