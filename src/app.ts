@@ -44,7 +44,12 @@ async function main() {
 			autostart: true,
 		});
 
-
+		Spicetify.Player.addEventListener("songchange", (event) => {
+            BrowserPonies.unspawnAll();
+			for(let artist of event.data.item.artists) {
+				BrowserPonies.spawn(artist.name);
+			}
+        });
 	}catch (error) {
         console.error("[Spicetify Ponies] Failed to initialize:", error);
         Spicetify.showNotification("Failed to load ponies. Check console.", true);
