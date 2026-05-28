@@ -1,4 +1,5 @@
 import defaultConfig from "./defaults/config.json"
+import artistMap from "./defaults/artist_map.json"
 
 let newPoniesSpawned = false;
 
@@ -22,7 +23,8 @@ function spawnPoniesForTrack(track) {
 	if(!track) return;
 	BrowserPonies.unspawnAll();
 	for(let artist of track.artists) {
-		BrowserPonies.spawn(artist.name);
+		let name = artist.name.replace(/\s*\(.+?\)/, "");
+		BrowserPonies.spawn(artistMap[name] || name);
 	}
 	newPoniesSpawned = true;
 }
