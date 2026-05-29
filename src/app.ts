@@ -21,7 +21,8 @@ async function waitWhile(conditionFn: () => boolean, interval = 100): Promise<vo
 }
 
 function spawnPoniesForTrack(track) {
-	// if(!track) return;
+	if(!track) return;
+
 	BrowserPonies.unspawnAll();
 	if(trackMap[track.uri]) {
 		console.log(trackMap[track.uri])
