@@ -43,5 +43,9 @@ Also there's always the gigantic job of mapping ponies for every song the fandom
 
 ## Credits
 
-This wouldn't have been possible without the work made by [panzi](https://github.com/panzi) on the original [Browser-Ponies](https://github.com/panzi/Browser-Ponies) repo 
-and the revival/continuation work made by [JasminDreasond](https://github.com/JasminDreasond) on her [New-Browser-Ponies](https://github.com/Pony-House/New-Browser-Ponies) repo.
+This wouldn't have been possible without the work made by [panzi](https://github.com/panzi) on the original [Browser Ponies](https://github.com/panzi/Browser-Ponies) repo 
+and the revival/continuation work made by [JasminDreasond](https://github.com/JasminDreasond) on her [New Browser Ponies](https://github.com/Pony-House/New-Browser-Ponies) repo.
+
+And of course, enourmous credit to the original [Desktop Ponies](https://github.com/RoosterDragon/Desktop-Ponies) by [RoosterDragon](https://github.com/RoosterDragon).
+
+Thank you all for providing ponies for everyone!
