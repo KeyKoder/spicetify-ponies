@@ -7,8 +7,8 @@ A small extension for Spicetify that brings the wonderful Browser Ponies to Spot
 
 # Features & To-Do
 
-[x] Different ponies appear depending on the song playing
-[ ] Custom pony sets randomly appearing when non-pony songs are playing
+- [x] Different ponies appear depending on the song playing
+- [ ] Custom pony sets randomly appearing when non-pony songs are playing
 
 
 Also there's always the gigantic job of mapping ponies for every song the fandom has made thus far.
